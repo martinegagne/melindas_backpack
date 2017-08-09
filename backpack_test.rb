@@ -13,32 +13,32 @@ class BackpackTest < MiniTest::Test
   ##### TESTS ABOUT BRINGING THE RIGHT CLOTHING #####
   def test_that_always_has_pants_and_shirt
     backpack = build(:backpack)
-    assert(backpack.items.include?('pants'))
-    assert(backpack.items.include?('shirt'))
+    assert(backpack.items_to_pack.include?('pants'))
+    assert(backpack.items_to_pack.include?('shirt'))
   end
 
   def test_that_brings_umbrella_when_rainy
     backpack = build(:backpack, weather: 'rainy')
-    assert(backpack.items.include?('umbrella'))
+    assert(backpack.items_to_pack.include?('umbrella'))
   end
 
   def test_that_brings_jacket_when_cold
     backpack = build(:backpack, weather: 'cold')
-    assert(backpack.items.include?('jacket'))
+    assert(backpack.items_to_pack.include?('jacket'))
   end
 
   ##### TESTS ABOUT PACKED LUNCHES #####
   def test_that_packs_lunch_on_all_weekdays
     ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].each do |day|
       backpack = build(:backpack, day_of_week: day)
-      assert(backpack.items.include?('packed lunch'))
+      assert(backpack.items_to_pack.include?('packed lunch'))
     end
   end
 
   def test_that_doesnt_pack_lunch_on_weekends
     ['saturday', 'sunday'].each do |day|
       backpack = build(:backpack, day_of_week: day)
-      refute(backpack.items.include?('packed lunch'))
+      refute(backpack.items_to_pack.include?('packed lunch'))
     end
   end
 
@@ -48,14 +48,14 @@ class BackpackTest < MiniTest::Test
   def test_that_gym_shoes_are_packed_on_gym_days
     ['monday', 'thursday'].each do |day|
       backpack = build(:backpack, day_of_week: day)
-      assert(backpack.items.include?('gym shoes'))
+      assert(backpack.items_to_pack.include?('gym shoes'))
     end
   end
 
   def test_that_doesnt_pack_gym_shoes_on_rest_days
     ['tuesday', 'wednesday', 'friday', 'saturday', 'sunday'].each do |day|
       backpack = build(:backpack, day_of_week: day)
-      refute(backpack.items.include?('gym shoes'))
+      refute(backpack.items_to_pack.include?('gym shoes'))
     end
   end
 
@@ -70,7 +70,7 @@ Day: monday, Weather: sunny
 - shirt
 - gym shoes
 - packed lunch"
-    assert_equal(backpack.my_func, expected)
+    assert_equal(backpack.my_packing_summary, expected)
   end
 
 end
