@@ -23,11 +23,9 @@ class Backpack
     if weather== 'rainy'
       the_basics
       @items << 'umbrella'
-
     elsif weather == 'cold'
       the_basics
       @items << 'jacket'
-
     else
       the_basics
     end
@@ -41,7 +39,7 @@ class Backpack
     # Bring a packed lunch on all weekdays
     if day_of_week != 'saturday' && day_of_week != 'sunday'
       @items << 'packed lunch'
-    elsif false
+    elsif
       @items << 'snacks'
     end
   end
