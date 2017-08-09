@@ -9,6 +9,11 @@ class Backpack
     @items
   end
 
+  def the_basics
+    @items << 'pants'
+    @items << 'shirt'
+  end
+
   def prepare_backpack
     # Set up local variables used by rest of prepare_backpack method
     weather = @attributes[:weather]
@@ -16,16 +21,15 @@ class Backpack
 
     # Ensure appropriate clothing is added to backpack
     if weather== 'rainy'
-      @items << 'pants'
-      @items << 'shirt'
+      the_basics
       @items << 'umbrella'
+
     elsif weather == 'cold'
-      @items << 'pants'
-      @items << 'shirt'
+      the_basics
       @items << 'jacket'
+
     else
-      @items << 'pants'
-      @items << 'shirt'
+      the_basics
     end
 
     # Ensure gym shoes are added to backpack if it's a gym day
